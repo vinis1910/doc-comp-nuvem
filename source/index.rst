@@ -15,9 +15,4 @@ Bem-vindo à documentação do comp-nuvem-doc!
    conexao-com-mysql
    deploy
 
-Índices e tabelas
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+===========================================
