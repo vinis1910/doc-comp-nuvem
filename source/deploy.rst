@@ -13,66 +13,115 @@ Configuração do Ambiente
 
 Antes de iniciar o deploy, certifique-se de ter o ambiente configurado corretamente:
 
-1. **Servidor Web**: Garanta que você tenha um servidor web configurado e pronto para hospedar aplicativos PHP. Exemplos comuns incluem Apache, Nginx, ou servidores integrados como o servidor embutido do PHP.
+1. **Servidor Web**
 
-2. **MySQL**: Verifique se você tem um servidor MySQL configurado e acessível pela aplicação. As configurações de conexão com o banco de dados devem estar corretamente definidas no arquivo `config.php`.
+   - **Instalação do Apache (Exemplo para sistemas baseados em Debian/Ubuntu):**
 
-3. **PHP**: Certifique-se de ter o PHP instalado no servidor com as extensões necessárias para executar a aplicação PHP.
+     ```bash
+     sudo apt update
+     sudo apt install apache2
+     ```
 
-4. **Código Fonte**: Clone ou copie o código fonte da aplicação comp-nuvem para o diretório raiz do servidor web.
+   - **Instalação do PHP e Módulos Necessários:**
+
+     ```bash
+     sudo apt install php libapache2-mod-php php-mysql
+     ```
+
+   - **Verificação da Instalação:**
+
+     Para verificar se o Apache está rodando, abra um navegador e visite `http://localhost`. Você deve ver a página padrão do Apache.
+
+2. **MySQL**
+
+   - **Instalação do MySQL Server (Exemplo para sistemas baseados em Debian/Ubuntu):**
+
+     ```bash
+     sudo apt update
+     sudo apt install mysql-server
+     ```
+
+   - **Configuração Inicial do MySQL:**
+
+     Durante a instalação, o MySQL solicitará uma senha para o usuário root do MySQL. Certifique-se de configurar uma senha forte.
+
+   - **Acesso ao MySQL:**
+
+     Use o cliente MySQL para acessar o servidor MySQL:
+
+     ```bash
+     mysql -u root -p
+     ```
+
+     Insira a senha definida durante a instalação.
+
+3. **Código Fonte**
+
+   - **Clone do Repositório da Aplicação:**
+
+     Clone o repositório da aplicação comp-nuvem para o diretório raiz do servidor web (geralmente `/var/www/html/` no Apache):
+
+     ```bash
+     sudo git clone https://github.com/seu-usuario/comp-nuvem /var/www/html/comp-nuvem
+     ```
 
 Configuração do Banco de Dados
 -------------------------------
 
 A aplicação comp-nuvem utiliza um banco de dados MySQL. Antes de iniciar o deploy, execute as seguintes etapas:
 
-1. **Instalação do MySQL**: Caso o MySQL não esteja instalado, siga as instruções específicas para o seu sistema operacional para instalar o MySQL Server.
+1. **Criação do Banco de Dados e Tabelas**
 
-2. **Acesso ao MySQL**: Utilize o cliente MySQL ou a linha de comando para acessar o servidor MySQL. Por exemplo, no terminal:
+   - **Acesso ao MySQL:**
 
-   .. code-block:: bash
+     ```bash
+     mysql -u root -p
+     ```
 
-      mysql -u root -p
+   - **Criação do Banco de Dados:**
 
-   Isso abrirá o cliente MySQL e solicitará a senha do usuário root.
+     ```sql
+     CREATE DATABASE demo;
+     ```
 
-3. **Criação de um Novo Usuário**: Se desejar criar um novo usuário para a aplicação, execute o seguinte comando SQL no MySQL:
+   - **Criação das Tabelas:**
 
-   .. code-block:: sql
+     Utilize o arquivo SQL fornecido para criar as tabelas necessárias:
 
-      CREATE USER 'novousuario'@'localhost' IDENTIFIED BY 'senha';
+     ```bash
+     mysql -u root -p demo < /var/www/html/comp-nuvem/api/company.sql
+     ```
 
-   Substitua ``novousuario`` pelo nome de usuário desejado e ``senha`` pela senha desejada para o novo usuário.
+2. **Criação de um Novo Usuário**
 
-4. **Concessão de Privilégios**: Conceda privilégios ao novo usuário para o banco de dados utilizado pela aplicação. Por exemplo, para conceder todos os privilégios ao novo usuário no banco de dados ``demo``:
+   - **Criação do Usuário:**
 
-   .. code-block:: sql
+     ```sql
+     CREATE USER 'novousuario'@'localhost' IDENTIFIED BY 'senha';
+     ```
 
-      GRANT ALL PRIVILEGES ON demo.* TO 'novousuario'@'localhost';
+   - **Concessão de Privilégios:**
 
-   Certifique-se de substituir ``demo`` pelo nome do banco de dados da sua aplicação.
+     ```sql
+     GRANT ALL PRIVILEGES ON demo.* TO 'novousuario'@'localhost';
+     ```
 
-5. **Atualização das Configurações**: No arquivo ``config.php`` da aplicação, atualize as credenciais de conexão com o banco de dados para refletir o novo usuário criado:
+   Certifique-se de substituir `senha` pela senha desejada para o novo usuário.
 
-   .. code-block:: php
+3. **Atualização das Configurações no Arquivo `config.php`**
 
-      <?php
-      define('DB_SERVER', 'localhost');
-      define('DB_USERNAME', 'novousuario');
-      define('DB_PASSWORD', 'senha');
-      define('DB_NAME', 'demo');
+   Edite o arquivo `config.php` da aplicação para refletir as novas credenciais de conexão:
 
-      $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+   ```php
+   <?php
+   define('DB_SERVER', 'localhost');
+   define('DB_USERNAME', 'novousuario');
+   define('DB_PASSWORD', 'senha');
+   define('DB_NAME', 'demo');
 
-      if($link === false){
-          die("ERRO: Não foi possível conectar. " . mysqli_connect_error());
-      }
-      ?>
+   $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-6. **Troca de Usuário no MySQL**: Para trocar de usuário no MySQL durante a sessão, utilize o comando ``USE`` seguido do nome do banco de dados desejado:
-
-   .. code-block:: sql
-
-      USE outrobanco;
-
-   Isso mudará o contexto atual para o banco de dados especificado, permitindo que você execute consultas e operações dentro dele.
+   if($link === false){
+       die("ERRO: Não foi possível conectar. " . mysqli_connect_error());
+   }
+   ?>
