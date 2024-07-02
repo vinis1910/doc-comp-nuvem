@@ -76,3 +76,17 @@ A aplicação comp-nuvem utiliza um banco de dados MySQL. Antes de iniciar o dep
       USE outrobanco;
 
    Isso mudará o contexto atual para o banco de dados especificado, permitindo que você execute consultas e operações dentro dele.
+
+Rodando e Iniciando a Aplicação PHP
+------------------------------------
+
+Depois de configurar o ambiente e o banco de dados, siga estes passos para rodar e iniciar a aplicação PHP:
+
+1. **Acesse a Aplicação**: Abra um navegador web e insira o endereço configurado para o servidor web onde a aplicação comp-nuvem está hospedada. Por exemplo:
+
+   - Se estiver usando Apache localmente, o endereço pode ser `http://localhost`.
+   - Se estiver usando um servidor remoto, utilize o endereço IP ou o domínio configurado.
+
+2. **Verifique a Conexão**: Ao acessar a aplicação pela primeira vez, verifique se não há erros de conexão com o banco de dados e se todas as funcionalidades estão operacionais.
+
+Com esses passos concluídos, sua aplicação comp-nuvem estará rodando e pronta para uso.
