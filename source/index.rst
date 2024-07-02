@@ -6,6 +6,9 @@
 Bem-vindo à documentação do comp-nuvem-doc!
 ===========================================
 
+Essa é a documentação da api ficticia criada em aula para fins de aprendizagem.
+Aqui esta o conteudo da documentação da minha API PHP.
+
 .. toctree::
    :maxdepth: 2
    :caption: Conteúdo:
