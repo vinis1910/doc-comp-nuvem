@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploy da Aplicação comp-nuvem &mdash; comp-nuvem-doc 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b7f9538e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            comp-nuvem-doc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Deploy da Aplicação comp-nuvem</a><ul>
+<li><a class="reference internal" href="#configuracao-do-ambiente">Configuração do Ambiente</a></li>
+<li><a class="reference internal" href="#configuracao-do-banco-de-dados">Configuração do Banco de Dados</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">comp-nuvem-doc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Deploy da Aplicação comp-nuvem</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/deploy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deploy-da-aplicacao-comp-nuvem">
+<h1>Deploy da Aplicação comp-nuvem<a class="headerlink" href="#deploy-da-aplicacao-comp-nuvem" title="Permalink to this heading"></a></h1>
+<p>Nesta seção, vamos abordar como realizar o deploy da aplicação comp-nuvem, que utiliza PHP e MySQL como banco de dados.</p>
+<section id="configuracao-do-ambiente">
+<h2>Configuração do Ambiente<a class="headerlink" href="#configuracao-do-ambiente" title="Permalink to this heading"></a></h2>
+<p>Antes de iniciar o deploy, certifique-se de ter o ambiente configurado corretamente:</p>
+<ol class="arabic simple">
+<li><p><strong>Servidor Web</strong>: Garanta que você tenha um servidor web configurado e pronto para hospedar aplicativos PHP. Exemplos comuns incluem Apache, Nginx, ou servidores integrados como o servidor embutido do PHP.</p></li>
+<li><p><strong>MySQL</strong>: Verifique se você tem um servidor MySQL configurado e acessível pela aplicação. As configurações de conexão com o banco de dados devem estar corretamente definidas no arquivo <cite>config.php</cite>.</p></li>
+<li><p><strong>PHP</strong>: Certifique-se de ter o PHP instalado no servidor com as extensões necessárias para executar a aplicação PHP.</p></li>
+<li><p><strong>Código Fonte</strong>: Clone ou copie o código fonte da aplicação comp-nuvem para o diretório raiz do servidor web.</p></li>
+</ol>
+</section>
+<section id="configuracao-do-banco-de-dados">
+<h2>Configuração do Banco de Dados<a class="headerlink" href="#configuracao-do-banco-de-dados" title="Permalink to this heading"></a></h2>
+<p>A aplicação comp-nuvem utiliza um banco de dados MySQL. Antes de iniciar o deploy, execute as seguintes etapas:</p>
+<ol class="arabic">
+<li><p><strong>Criação do Banco de Dados</strong>: Execute o script <cite>company.sql</cite> no MySQL para criar o esquema necessário:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>sql
+CREATE TABLE employees (</p>
+<blockquote>
+<div><p>id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL,
+address VARCHAR(255) NOT NULL,
+salary INT(10) NOT NULL</p>
+</div></blockquote>
+<p>);</p>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, vinicius.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

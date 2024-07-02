@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to comp-nuvem-doc’s documentation! &mdash; comp-nuvem-doc 0.0.1 documentation</title>
+  <title>Bem-vindo à documentação do comp-nuvem-doc! &mdash; comp-nuvem-doc 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -44,8 +44,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to comp-nuvem-doc’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#">Bem-vindo à documentação do comp-nuvem-doc!</a></li>
+<li><a class="reference internal" href="#indices-e-tabelas">Índices e tabelas</a><ul>
+<li><a class="reference internal" href="#introducao">Introdução</a></li>
+<li><a class="reference internal" href="#arquivos-da-api">Arquivos da API</a></li>
+<li><a class="reference internal" href="#conexao-com-mysql">Conexão com MySQL</a></li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -62,7 +67,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Welcome to comp-nuvem-doc’s documentation!</li>
+      <li class="breadcrumb-item active">Bem-vindo à documentação do comp-nuvem-doc!</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -72,18 +77,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-comp-nuvem-doc-s-documentation">
-<h1>Welcome to comp-nuvem-doc’s documentation!<a class="headerlink" href="#welcome-to-comp-nuvem-doc-s-documentation" title="Permalink to this heading"></a></h1>
+  <section id="bem-vindo-a-documentacao-do-comp-nuvem-doc">
+<h1>Bem-vindo à documentação do comp-nuvem-doc!<a class="headerlink" href="#bem-vindo-a-documentacao-do-comp-nuvem-doc" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 </section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<section id="indices-e-tabelas">
+<h1>Índices e tabelas<a class="headerlink" href="#indices-e-tabelas" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+<section id="introducao">
+<h2>Introdução<a class="headerlink" href="#introducao" title="Permalink to this heading"></a></h2>
+<p id="id1">Esta documentação fornece uma visão geral da aplicação comp-nuvem, que é uma aplicação PHP utilizando MySQL como banco de dados.</p>
+</section>
+<section id="arquivos-da-api">
+<h2>Arquivos da API<a class="headerlink" href="#arquivos-da-api" title="Permalink to this heading"></a></h2>
+<p id="id2">Os seguintes arquivos fazem parte da API:</p>
+<ul class="simple">
+<li><p><cite>company.sql</cite>: Arquivo SQL que define o esquema do banco de dados.</p></li>
+<li><p><cite>config.php</cite>: Arquivo PHP contendo a configuração de conexão com o banco de dados.</p></li>
+<li><p><cite>create.php</cite>, <cite>read.php</cite>, <cite>update.php</cite>, <cite>delete.php</cite>: Arquivos PHP para operações CRUD no banco de dados.</p></li>
+</ul>
+</section>
+<section id="conexao-com-mysql">
+<h2>Conexão com MySQL<a class="headerlink" href="#conexao-com-mysql" title="Permalink to this heading"></a></h2>
+<p id="id3">Para conectar ao MySQL, verifique se possui as seguintes credenciais de banco de dados configuradas no arquivo <cite>config.php</cite>:</p>
+<p><a href="#id4"><span class="problematic" id="id5">``</span></a><a href="#id6"><span class="problematic" id="id7">`</span></a>php
+&lt;?php
+define(‘DB_SERVER’, ‘localhost’);
+define(‘DB_USERNAME’, ‘root’);
+define(‘DB_PASSWORD’, ‘’);
+define(‘DB_NAME’, ‘demo’);</p>
+<p>$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);</p>
+<dl class="simple">
+<dt>if($link === false){</dt><dd><p>die(“ERRO: Não foi possível conectar. “ . mysqli_connect_error());</p>
+</dd>
+</dl>
+<p>}
+?&gt;</p>
+</section>
 </section>
 
 
