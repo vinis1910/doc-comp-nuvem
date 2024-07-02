@@ -26,12 +26,53 @@ Configuração do Banco de Dados
 
 A aplicação comp-nuvem utiliza um banco de dados MySQL. Antes de iniciar o deploy, execute as seguintes etapas:
 
-1. **Criação do Banco de Dados**: Execute o script `company.sql` no MySQL para criar o esquema necessário:
+1. **Instalação do MySQL**: Caso o MySQL não esteja instalado, siga as instruções específicas para o seu sistema operacional para instalar o MySQL Server.
 
-   ```sql
-   CREATE TABLE employees (
-       id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-       name VARCHAR(100) NOT NULL,
-       address VARCHAR(255) NOT NULL,
-       salary INT(10) NOT NULL
-   );
+2. **Acesso ao MySQL**: Utilize o cliente MySQL ou a linha de comando para acessar o servidor MySQL. Por exemplo, no terminal:
+
+   .. code-block:: bash
+
+      mysql -u root -p
+
+   Isso abrirá o cliente MySQL e solicitará a senha do usuário root.
+
+3. **Criação de um Novo Usuário**: Se desejar criar um novo usuário para a aplicação, execute o seguinte comando SQL no MySQL:
+
+   .. code-block:: sql
+
+      CREATE USER 'novousuario'@'localhost' IDENTIFIED BY 'senha';
+
+   Substitua ``novousuario`` pelo nome de usuário desejado e ``senha`` pela senha desejada para o novo usuário.
+
+4. **Concessão de Privilégios**: Conceda privilégios ao novo usuário para o banco de dados utilizado pela aplicação. Por exemplo, para conceder todos os privilégios ao novo usuário no banco de dados ``demo``:
+
+   .. code-block:: sql
+
+      GRANT ALL PRIVILEGES ON demo.* TO 'novousuario'@'localhost';
+
+   Certifique-se de substituir ``demo`` pelo nome do banco de dados da sua aplicação.
+
+5. **Atualização das Configurações**: No arquivo ``config.php`` da aplicação, atualize as credenciais de conexão com o banco de dados para refletir o novo usuário criado:
+
+   .. code-block:: php
+
+      <?php
+      define('DB_SERVER', 'localhost');
+      define('DB_USERNAME', 'novousuario');
+      define('DB_PASSWORD', 'senha');
+      define('DB_NAME', 'demo');
+
+      $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+      if($link === false){
+          die("ERRO: Não foi possível conectar. " . mysqli_connect_error());
+      }
+      ?>
+
+6. **Troca de Usuário no MySQL**: Para trocar de usuário no MySQL durante a sessão, utilize o comando ``USE`` seguido do nome do banco de dados desejado:
+
+   .. code-block:: sql
+
+      USE outrobanco;
+
+   Isso mudará o contexto atual para o banco de dados especificado, permitindo que você execute consultas e operações dentro dele.
